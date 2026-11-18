@@ -1,0 +1,11 @@
+# only the app goes into the image
+.git
+.github
+converter
+data/*.db
+data/*.db-wal
+data/*.db-shm
+*.csv
+**/__pycache__
+README.md
+docker-compose.yml

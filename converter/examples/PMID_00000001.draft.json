@@ -1,0 +1,408 @@
+{
+  "schema_version": "1.2",
+  "article": {
+    "id": "PMID:00000001",
+    "pmid": "00000001",
+    "title": "Two siblings with a Kabuki-like phenotype and a novel KMT2D variant",
+    "journal": "Sample J Med Genet",
+    "year": 2023
+  },
+  "hpo_release": "2026-09-01",
+  "pipeline": {
+    "name": "phenotype-extractor",
+    "version": "0.3.1",
+    "run_id": "run-2026-11-10-a",
+    "created_at": "2026-11-10T09:30:00Z"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "kind": "abstract",
+      "title": "Summary",
+      "text": "We report two siblings with features suggestive of Kabuki syndrome in whom exome sequencing identified a novel heterozygous KMT2D variant. We describe their clinical course and compare it with previously reported cases."
+    },
+    {
+      "id": "s2",
+      "kind": "case",
+      "title": "Patient 1",
+      "text": "The proband, a 6-year-old girl, was referred to our clinic for global developmental delay and short stature. She was born at term after an uneventful pregnancy. On examination she had long palpebral fissures with eversion of the lateral third of the lower eyelids, arched eyebrows and prominent ear lobes. Persistent fetal fingertip pads were noted on both hands.\n\nEchocardiography revealed coarctation of the aorta, which was repaired at the age of 4 months. She had recurrent otitis media during infancy. Her hearing was normal on repeated audiological testing, and brain MRI was unremarkable. At 5 years, formal assessment confirmed marked developmental delay."
+    },
+    {
+      "id": "s3",
+      "kind": "case",
+      "title": "Patient 2",
+      "text": "Her younger brother, aged 3 years, presented with hypotonia and feeding difficulties in the neonatal period. He had a cleft palate, which was surgically repaired at 11 months. Mild intellectual disability was suspected at his last assessment. Their mother reported frequent infections during her own childhood."
+    },
+    {
+      "id": "s4",
+      "kind": "section",
+      "title": "Discussion",
+      "text": "Both siblings share the characteristic facial gestalt, although the proband shows a more severe neurodevelopmental profile. Segregation analysis showed that the variant was inherited from the mother, who had a milder phenotype."
+    }
+  ],
+  "patients": [
+    {
+      "id": "p1",
+      "label": "Patient 1",
+      "aliases": [
+        "the proband"
+      ]
+    },
+    {
+      "id": "p2",
+      "label": "Patient 2",
+      "aliases": [
+        "her younger brother"
+      ]
+    }
+  ],
+  "mentions": [
+    {
+      "id": "m01",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "global developmental delay",
+      "predicted": {
+        "hpo_id": "HP:0001263",
+        "label": "Global developmental delay"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0001263",
+          "label": "Global developmental delay",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0001249",
+          "label": "Intellectual disability",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "id": "m02",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "short stature",
+      "predicted": {
+        "hpo_id": "HP:0004322",
+        "label": "Short stature"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0004322",
+          "label": "Short stature",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "m03",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "long palpebral fissures",
+      "predicted": {
+        "hpo_id": "HP:0000637",
+        "label": "Long palpebral fissure"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0000637",
+          "label": "Long palpebral fissure",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0000492",
+          "label": "Abnormal eyelid morphology",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "id": "m04",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "eversion of the lateral third of the lower eyelids",
+      "predicted": {
+        "hpo_id": "HP:0000492",
+        "label": "Abnormal eyelid morphology"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0000492",
+          "label": "Abnormal eyelid morphology",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0007655",
+          "label": "Eversion of lateral third of lower eyelids",
+          "rank": 2
+        },
+        {
+          "hpo_id": "HP:0000656",
+          "label": "Ectropion",
+          "rank": 3
+        },
+        {
+          "hpo_id": "HP:0000508",
+          "label": "Ptosis",
+          "rank": 4
+        }
+      ]
+    },
+    {
+      "id": "m05",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "arched eyebrows",
+      "predicted": {
+        "hpo_id": "HP:0002553",
+        "label": "Highly arched eyebrow"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0002553",
+          "label": "Highly arched eyebrow",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "m06",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "prominent ear lobes",
+      "predicted": {
+        "hpo_id": "HP:0009748",
+        "label": "Large earlobe"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0009748",
+          "label": "Large earlobe",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0000400",
+          "label": "Macrotia",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "id": "m07",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "Persistent fetal fingertip pads",
+      "predicted": {
+        "hpo_id": "HP:0001212",
+        "label": "Prominent fingertip pads"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0001212",
+          "label": "Prominent fingertip pads",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "m08",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "coarctation of the aorta",
+      "predicted": {
+        "hpo_id": "HP:0001680",
+        "label": "Coarctation of aorta"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0001680",
+          "label": "Coarctation of aorta",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0001629",
+          "label": "Ventricular septal defect",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "id": "m09",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "recurrent otitis media",
+      "predicted": {
+        "hpo_id": "HP:0000403",
+        "label": "Recurrent otitis media"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0000403",
+          "label": "Recurrent otitis media",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0002205",
+          "label": "Recurrent respiratory infections",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "Her hearing was normal",
+      "predicted": {
+        "hpo_id": "HP:0000365",
+        "label": "Hearing impairment"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0000365",
+          "label": "Hearing impairment",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0000407",
+          "label": "Sensorineural hearing impairment",
+          "rank": 2
+        },
+        {
+          "hpo_id": "HP:0000405",
+          "label": "Conductive hearing impairment",
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "patient_id": "p1",
+      "section_id": "s2",
+      "text": "marked developmental delay",
+      "predicted": {
+        "hpo_id": "HP:0001263",
+        "label": "Global developmental delay"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0001263",
+          "label": "Global developmental delay",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0001249",
+          "label": "Intellectual disability",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "patient_id": "p2",
+      "section_id": "s3",
+      "text": "hypotonia",
+      "predicted": {
+        "hpo_id": "HP:0001252",
+        "label": "Hypotonia"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0001252",
+          "label": "Hypotonia",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "m13",
+      "patient_id": "p2",
+      "section_id": "s3",
+      "text": "feeding difficulties in the neonatal period",
+      "predicted": {
+        "hpo_id": "HP:0011968",
+        "label": "Feeding difficulties"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0011968",
+          "label": "Feeding difficulties",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0008872",
+          "label": "Feeding difficulties in infancy",
+          "rank": 2
+        },
+        {
+          "hpo_id": "HP:0002020",
+          "label": "Gastroesophageal reflux",
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "id": "m14",
+      "patient_id": "p2",
+      "section_id": "s3",
+      "text": "cleft palate",
+      "predicted": {
+        "hpo_id": "HP:0000175",
+        "label": "Cleft palate"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0000175",
+          "label": "Cleft palate",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "id": "m15",
+      "patient_id": "p2",
+      "section_id": "s3",
+      "text": "Mild intellectual disability",
+      "predicted": {
+        "hpo_id": "HP:0001256",
+        "label": "Intellectual disability, mild"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0001256",
+          "label": "Intellectual disability, mild",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0001249",
+          "label": "Intellectual disability",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "id": "m16",
+      "patient_id": "p2",
+      "section_id": "s3",
+      "text": "frequent infections",
+      "predicted": {
+        "hpo_id": "HP:0002719",
+        "label": "Recurrent infections"
+      },
+      "candidates": [
+        {
+          "hpo_id": "HP:0002719",
+          "label": "Recurrent infections",
+          "rank": 1
+        },
+        {
+          "hpo_id": "HP:0002205",
+          "label": "Recurrent respiratory infections",
+          "rank": 2
+        }
+      ]
+    }
+  ]
+}

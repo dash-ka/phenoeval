@@ -1,0 +1,24 @@
+# PhenoEval with Docker Compose
+#   start:   docker compose up -d
+#   stop:    docker compose down          (answers are kept in the "phenoeval-data" volume)
+#   logs:    docker compose logs -f
+services:
+  phenoeval:
+    # built from this folder on the first "docker compose up" (or "docker compose up -d --build" after an update).
+    # To use the prebuilt image from GitHub instead, see "Option B" in README.md.
+    build: .
+    image: phenoeval:local
+    container_name: phenoeval
+    restart: unless-stopped
+    ports:
+      # only this computer can open the app; see README before opening it to the network
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - phenoeval-data:/data
+    environment:
+      # web address of the study information sheet (optional; otherwise the draft in the image,
+      # or information-sheet.pdf/.html copied into the data volume)
+      PHENOEVAL_INFO_SHEET: ""
+
+volumes:
+  phenoeval-data:

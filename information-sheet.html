@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Information sheet — PhenoEval</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#F7F6F3;font-family:Inter,system-ui,sans-serif;color:#1F2328}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 32px;background:#FFFFFF;border-bottom:1px solid #E6E4DF}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+  main{max-width:760px;margin:0 auto;padding:44px 20px 72px;display:flex;flex-direction:column;gap:22px}
+  h1{margin:0;font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:32px;line-height:1.2}
+  .lead{margin:0;font-size:16px;line-height:1.65;color:#4A5059}
+  .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:#5F6670}
+  section{background:#FFFFFF;border:1px solid #E6E4DF;border-radius:12px;padding:22px 26px;display:flex;flex-direction:column;gap:10px}
+  h2{margin:0;font-size:17px;font-weight:600}
+  p,li{font-size:15px;line-height:1.6;color:#33383F}
+  p{margin:0}
+  ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+  b{font-weight:600}
+  table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}
+  th,td{text-align:left;vertical-align:top;padding:8px 10px;border-top:1px solid #EEECE7}
+  th{font-weight:600;color:#33383F;width:34%}
+  .fill{background:#FBF1DC;border-bottom:1px dashed #B07A1E;padding:0 3px;border-radius:3px;color:#6B4508}
+  .note{font-size:13px;color:#5F6670}
+  footer{font-size:12.5px;color:#5F6670;text-align:center;padding-bottom:40px}
+  @media print{body{background:#FFFFFF}header{display:none}section{border:0;padding:0}main{padding-top:0}.fill{background:none;border:0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="7" fill="none" stroke="#2B3036" stroke-width="2"/><path d="M7 14l4 4 8-9" fill="none" stroke="#2B3036" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>PhenoEval</div>
+  <span class="note">Information sheet · version 1.0 · <span class="fill">[DATE]</span></span>
+</header>
+
+<main>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h1>Information sheet for participating clinicians</h1>
+    <p class="lead">Expert evaluation of patient-level phenotypic profiles extracted automatically from published case reports.</p>
+    <div class="meta">
+      <span>Study team: <span class="fill">[UNIVERSITY / LAB NAME]</span></span>
+      <span>Principal investigator: <span class="fill">[PI NAME, TITLE]</span></span>
+      <span>Ethics approval: <span class="fill">[ETHICS COMMITTEE, APPROVAL NO.]</span></span>
+    </div>
+  </div>
+
+  <section>
+    <h2>1. Why are we doing this study?</h2>
+    <p>Rare-disease research needs precise descriptions of patients' clinical features. Published case reports contain this information, but extracting it by hand is slow. We have built a computer pipeline, based on large language models, that reads a case report, finds the abnormal phenotypic features of each patient described, and codes them with terms from the Human Phenotype Ontology (HPO).</p>
+    <p>Before such profiles can be used, we need to know how accurate they are. Clinical judgement is the reference we need: this study asks clinicians to check the pipeline's output.</p>
+  </section>
+
+  <section>
+    <h2>2. Why have I been invited?</h2>
+    <p>You have been invited because you are a clinician with experience in describing patient phenotypes <span class="fill">[e.g. clinical genetics, paediatrics, neurology]</span>. We aim to include <span class="fill">[NUMBER]</span> clinicians.</p>
+  </section>
+
+  <section>
+    <h2>3. What will I be asked to do?</h2>
+    <ul>
+      <li>Sign in to the PhenoEval web application with your name and email address.</li>
+      <li>Review <b>50 published case reports</b>. Every participant receives the same set of articles.</li>
+      <li>For each phenotype highlighted in an article, decide whether its HPO term fits (accept, revise or reject it), check that it is assigned to the right patient, and add any phenotypes the pipeline missed.</li>
+      <li>Submit your answers for each article. You can work at your own pace, stop at any time and come back later: every answer is saved as you go.</li>
+    </ul>
+    <p>We estimate the whole task takes about <span class="fill">[ESTIMATED HOURS]</span> hours in total. Please work independently and do not discuss the articles with other participants until the study is over, so that we can compare answers between clinicians.</p>
+    <p class="note">The highlights and terms you see were produced automatically and may be wrong; that is what you are asked to judge. You will not see the reference annotations the study uses for comparison.</p>
+  </section>
+
+  <section>
+    <h2>4. Do I have to take part?</h2>
+    <p>No. Participation is entirely voluntary. If you agree, you can still withdraw at any time, without giving a reason and without any consequence for you. How to withdraw, and what happens to your answers, is explained in section 8.</p>
+  </section>
+
+  <section>
+    <h2>5. Are there any risks or benefits?</h2>
+    <p>There are no known risks beyond the time the task takes. The articles are published case reports: no identifiable patient data is shown or collected. There is no direct benefit to you, but your work will help measure how reliable automatically extracted phenotype profiles are, and so improve tools for rare-disease research. <span class="fill">[Any compensation or acknowledgement, e.g. "Participants who wish can be acknowledged by name in the publication." — or delete]</span></p>
+  </section>
+
+  <section>
+    <h2>6. What data will be collected about me?</h2>
+    <table>
+      <tr><th>Your name and email</th><td>Used only to give you access and to contact you about the study. Never published and never part of the analysis data.</td></tr>
+      <tr><th>Your answers</th><td>Your decision on each highlighted phenotype (accept, revise, reject), the HPO terms you choose, patient reassignments, the phenotypes you add, and any comment you write when submitting an article.</td></tr>
+      <tr><th>Activity log</th><td>The time of each action in the application (for example when you open a phenotype and when you decide on it), used to measure time spent per item and changes of mind.</td></tr>
+      <tr><th>Consent</th><td>The date and time you gave your consent on the welcome page.</td></tr>
+    </table>
+    <p>For the analysis, your answers are linked to a <b>pseudonymous annotator number</b>, not to your name. The application does not store your IP address, location or device information. <span class="fill">[If the application is hosted behind an institutional web server, check whether that server keeps access logs, and state it here.]</span></p>
+  </section>
+
+  <section>
+    <h2>7. How will my data be stored and used?</h2>
+    <ul>
+      <li>The data is stored in a database on <span class="fill">[SERVER / INSTITUTION, e.g. a secure server of the University of …, located in the EU]</span>, accessible only to the study team.</li>
+      <li>Your answers will be compared with reference annotations and with the answers of other clinicians (agreement between experts).</li>
+      <li>Results will be published in scientific journals and presented at conferences in <b>aggregated form</b>. No participant will be identifiable in any publication.</li>
+      <li>The pseudonymised answers may be shared with other researchers <span class="fill">[or: in a public data repository]</span> to allow the results to be checked. Your name and email are never shared. <span class="fill">[Delete this point if the data will not be shared.]</span></li>
+      <li>Your name and email will be deleted at the end of the study, <span class="fill">[DATE or "within 6 months of the end of data collection"]</span>. The pseudonymised research data will be kept for <span class="fill">[RETENTION PERIOD, e.g. 10 years]</span>, in line with <span class="fill">[INSTITUTION]</span> research data policy.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>8. What if I want to withdraw?</h2>
+    <p>Write to <span class="fill">[STUDY CONTACT EMAIL]</span> at any time. You can choose either to stop and let us keep the answers you have already given, or to have all your data deleted. Deletion is possible until <span class="fill">[DATE, e.g. the start of the analysis]</span>; after that date, your pseudonymised answers may already be part of the analysed results and cannot be removed from them.</p>
+  </section>
+
+  <section>
+    <h2>9. Your rights under data protection law</h2>
+    <p>Your personal data is processed in accordance with the EU General Data Protection Regulation (GDPR) <span class="fill">[and national law, e.g. Italian Legislative Decree 196/2003]</span>.</p>
+    <table>
+      <tr><th>Data controller</th><td><span class="fill">[INSTITUTION, address]</span></td></tr>
+      <tr><th>Legal basis</th><td><span class="fill">[e.g. your consent (GDPR art. 6(1)(a)), or a task carried out in the public interest for scientific research (art. 6(1)(e) and art. 89)]</span></td></tr>
+      <tr><th>Data protection officer</th><td><span class="fill">[DPO NAME, EMAIL]</span></td></tr>
+    </table>
+    <p>You have the right to access your data, to have it corrected or deleted, to restrict or object to its processing, and to withdraw your consent, within the limits set by the law for scientific research. To exercise these rights, contact the study team or the data protection officer. You also have the right to lodge a complaint with the data protection authority <span class="fill">[e.g. Garante per la protezione dei dati personali, www.garanteprivacy.it]</span>.</p>
+  </section>
+
+  <section>
+    <h2>10. Who has reviewed this study?</h2>
+    <p>This study has been reviewed and approved by <span class="fill">[ETHICS COMMITTEE NAME]</span>, approval number <span class="fill">[NUMBER]</span>, dated <span class="fill">[DATE]</span>.</p>
+  </section>
+
+  <section>
+    <h2>11. Contacts</h2>
+    <table>
+      <tr><th>Questions about the study</th><td><span class="fill">[PI NAME]</span>, <span class="fill">[EMAIL]</span>, <span class="fill">[PHONE]</span></td></tr>
+      <tr><th>Technical help with the application</th><td><span class="fill">[NAME, EMAIL]</span></td></tr>
+      <tr><th>Data protection</th><td><span class="fill">[DPO EMAIL]</span></td></tr>
+    </table>
+  </section>
+
+  <p class="note" style="text-align:center">Thank you for reading this information sheet. If you agree to take part, return to the welcome page and tick the consent box.</p>
+</main>
+<footer>PhenoEval · Information sheet version 1.0 · <span class="fill">[DATE]</span></footer>
+</body>
+</html>

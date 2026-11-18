@@ -1,0 +1,8 @@
+# answers and working databases never go to GitHub (only seed/phenoeval.db, which holds no answers)
+*.db
+*.db-wal
+*.db-shm
+!seed/phenoeval.db
+*.csv
+__pycache__/
+.DS_Store

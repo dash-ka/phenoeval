@@ -1,0 +1,426 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phenoeval.example/schema/article/1.2",
+  "title": "PhenoEval input article",
+  "description": "One article to be reviewed by clinicians: its text, the patients it describes, and the phenotype mentions predicted by the pipeline. It must NOT contain any ground-truth (phenopacket) data: annotators are blinded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "article",
+    "hpo_release",
+    "sections",
+    "patients",
+    "mentions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.2"
+    },
+    "article": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "description": "Stable article ID used across the study, e.g. PMID:12345678."
+        },
+        "pmid": {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        },
+        "pmcid": {
+          "type": "string",
+          "pattern": "^PMC[0-9]+$"
+        },
+        "doi": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "journal": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "license": {
+          "type": "string",
+          "description": "Licence of the text, if known (e.g. CC BY 4.0)."
+        }
+      }
+    },
+    "hpo_release": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Date of the HPO release (hp.json) used for linking, e.g. 2026-09-01. The app uses the same release for search and lineage."
+    },
+    "pipeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The article text, in reading order. Mention offsets are relative to the text of their section.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/localId"
+          },
+          "kind": {
+            "enum": [
+              "title",
+              "abstract",
+              "case",
+              "section",
+              "supplementary",
+              "table",
+              "figure_caption",
+              "other"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "description": "Heading shown above the section, e.g. 'Patient 1' or 'Discussion'."
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Plain text (all kinds except table). Paragraphs separated by a blank line (\\n\\n)."
+          },
+          "caption": {
+            "type": "string",
+            "description": "Table caption and notes shown above the table."
+          },
+          "header_rows": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "How many of the first rows are column headers (default 1)."
+          },
+          "rows": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Table cells, row by row, header rows included."
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "table"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "rows"
+              ],
+              "not": {
+                "required": [
+                  "text"
+                ]
+              }
+            },
+            "else": {
+              "required": [
+                "text"
+              ],
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "rows"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "header_rows"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "patients": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/localId"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The patient's identifier exactly as written in the article (e.g. 'Patient 1', 'II-3', 'the proband'). Shown to annotators."
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Other ways the article refers to this patient. Used to match identifiers typed under 'Someone else'."
+          }
+        }
+      }
+    },
+    "mentions": {
+      "type": "array",
+      "description": "Phenotype mentions predicted by the pipeline. One entry per evidence span or table cell, even when several share the same HPO term. Prose mentions have start/end; table mentions have cell.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "patient_id",
+          "section_id",
+          "text",
+          "predicted",
+          "candidates"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/localId"
+          },
+          "patient_id": {
+            "$ref": "#/$defs/localId"
+          },
+          "section_id": {
+            "$ref": "#/$defs/localId"
+          },
+          "start": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Prose sections: start offset in the section text (0-based, Unicode code points, as in Python str indexing)."
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "End offset, exclusive. section.text[start:end] must equal text."
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Prose: exactly section.text[start:end]. Table: a readable form of the evidence, e.g. 'Patient 1-1 · Atopic dermatitis: (+)'."
+          },
+          "predicted": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/term"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The predicted HPO term, or null for a No code mention (no fitting term was predicted). A No code mention should carry extracted_as."
+          },
+          "candidates": {
+            "type": "array",
+            "minItems": 0,
+            "description": "Candidate HPO terms, best first. Must include the predicted term when there is one. May be empty for a No code mention.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/term"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "rank": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "score": {
+                      "type": "number"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "cell": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "row",
+              "col"
+            ],
+            "properties": {
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "col": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "start": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Optional: where the mention starts inside the cell text (0-based). Absent = the whole cell."
+              },
+              "end": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Optional: end inside the cell text, exclusive."
+              }
+            },
+            "description": "Table sections: the evidence cell, as indexes into section.rows (header rows included); start/end when the mention is only part of the cell text (a cell can list several phenotypes)."
+          },
+          "extracted_as": {
+            "type": "string",
+            "description": "Optional: the phenotype as the pipeline worded it, when it differs from the text (e.g. 'bilateral hypoplastic radii')."
+          },
+          "provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "term_source"
+            ],
+            "description": "Optional: where the predicted term came from, for the analysis. Never shown to annotators.",
+            "properties": {
+              "term_source": {
+                "enum": [
+                  "lookup",
+                  "linker"
+                ],
+                "description": "lookup: the lookup's term was kept; linker: the lookup said AUTO and the linker decided."
+              },
+              "lookup_id": {
+                "type": "string",
+                "pattern": "^HP:[0-9]{7}$"
+              },
+              "linker_id": {
+                "type": "string",
+                "pattern": "^HP:[0-9]{7}$",
+                "description": "The linker's choice (absent for 'None of the above')."
+              },
+              "linker_confidence": {
+                "type": "number"
+              },
+              "no_code_reason": {
+                "enum": [
+                  "linker_none_of_the_above",
+                  "linker_low_confidence"
+                ]
+              }
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "start",
+              "end"
+            ],
+            "not": {
+              "required": [
+                "cell"
+              ]
+            }
+          },
+          {
+            "required": [
+              "cell"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "start"
+                  ]
+                },
+                {
+                  "required": [
+                    "end"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "localId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "term": {
+      "type": "object",
+      "required": [
+        "hpo_id"
+      ],
+      "properties": {
+        "hpo_id": {
+          "type": "string",
+          "pattern": "^HP:[0-9]{7}$"
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional; the app takes labels from the pinned HPO release."
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "score": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

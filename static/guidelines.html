@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Annotation guidelines — PhenoEval</title>
+
+</head>
+<body>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F7F6F3;font-family:Inter,system-ui,sans-serif;color:#1F2328}
+a{color:#2B3036}a:hover{color:#1F2328}
+.btn-primary:hover{background:#1F2328!important;color:#FFFFFF}
+.gsec{display:flex;flex-direction:column;gap:6px;padding-top:8px}
+.gh{margin:0;display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;color:#1F2328}
+.gn{width:28px;height:28px;border-radius:50%;background:#2B3036;color:#FFFFFF;font-size:14px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.gni{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#2B3036;color:#FFFFFF;font-size:11.5px;font-weight:600;vertical-align:2px;margin:0 2px}
+.gp{margin:0;font-size:15px;line-height:1.65;color:#4A5059}
+.gcard{background:#FFFFFF;border:1px solid #E6E4DF;border-radius:12px;padding:20px 22px;display:flex;gap:18px}
+.gic{flex:none;width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center}
+.gbody{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+.gt{margin:0;font-size:16px;font-weight:600}
+.gt span{font-weight:400;font-size:13.5px;color:#5F6670}
+.gx{margin:0;font-size:14px;line-height:1.6;color:#4A5059}
+.ex{margin:0;font-size:13.5px;line-height:1.55;color:#33383F;background:#F7F6F3;border-radius:8px;padding:10px 12px}
+.ex .q{font-family:'Source Serif 4',Georgia,serif;font-size:14.5px}
+.hid{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#5F6670}
+.mk{font-family:Inter,sans-serif;font-weight:700;font-size:.8em;margin-left:3px}
+/* example phenotypic profile, same look as the annotation page */
+.prof{background:#FFFFFF;border:1px solid #D3DEE3;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.pgrp{display:flex;flex-direction:column;gap:6px}
+.pg-l{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8A9098}
+.pg-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pc{display:inline-flex;align-items:center;font-size:12.5px;line-height:1.4;padding:4px 10px;border-radius:7px;border:1px solid;white-space:nowrap}
+.c-pending{background:#FFFFFF;border-color:#9CCACC;color:#6B7280}
+.c-accept{background:#E8F0DC;border-color:#C6D9AD;color:#466A23}
+.c-revise{background:#FBEFDC;border-color:#EBD3A8;color:#6B4508}
+.c-added{background:#EEE8F8;border-color:#D5C8EE;color:#4B3482}
+.c-reject{background:#F7F2F1;border-color:#E8D3CF;color:#9A6B66;text-decoration:line-through}
+.pcw{display:inline-flex;align-items:center;gap:4px}
+.pcn{color:#8A9098;padding:0 2px;font-size:12px;font-weight:600;line-height:1.5}
+.hs{background:#D6ECEC;border-bottom:2px dashed #2E7F84;border-radius:3px;padding:1px 2px}
+.hs-acc{background:#D7E6C3;border-radius:3px;padding:1px 2px}
+.hs-link{box-shadow:0 0 0 2px #2B3036;border-radius:4px}
+.fcard{background:#FFFFFF;border:1px solid #AAC4C5;border-radius:10px;box-shadow:0 0 0 2px #AAC4C5;overflow:hidden}
+.fc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 14px}
+.fc-q{font-family:'Source Serif 4',Georgia,serif;font-size:15px;color:#1F2328}
+.fc-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;color:#4A515B;background:#EEF1F4;white-space:nowrap}
+.fc-body{border-top:1px solid #EEECE7;padding:12px 14px 12px;display:flex;flex-direction:column;gap:10px}
+.fc-ref{border:1px solid #DEDBD4;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.fc-k{font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#A3A9B0}
+.fc-name{font-size:14.5px;font-weight:600;color:#1F2328}
+.fc-def{font-family:'Source Serif 4',Georgia,serif;font-size:13px;line-height:1.5;color:#24282E}
+.fc-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.fc-dec{display:flex;flex-direction:column;gap:2px;padding:8px 9px;border:1px solid #DCD9D2;border-radius:9px;font-size:11px;line-height:1.3;color:#5F6670}
+.fc-dec b{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600}
+.fc-foot{display:flex;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid #EEECE7;font-size:12px;color:#33383F}
+.c-ghost{background:#FFFFFF;border-color:#B5BCC4;border-style:dashed;color:#6B7280}
+.nc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.nc li{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:10px;background:#F7F8F9;border:1px solid #DDE1E5;font-size:14px;line-height:1.55;color:#33383F}
+.nc .n{flex:none;width:22px;height:22px;border-radius:50%;color:#FFFFFF;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;background:#6B7280}
+.pkey{display:flex;gap:6px;flex-wrap:wrap;padding-top:10px;border-top:1px solid #EEF1F3}
+.pkey .pc{font-size:11px;padding:1px 8px}
+.rej{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rej li{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:10px;background:#FDF6F5;border:1px solid #EDCFCB;font-size:14px;line-height:1.55;color:#33383F}
+.rej .n,.rev .n{flex:none;width:22px;height:22px;border-radius:50%;color:#FFFFFF;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center}
+.rej .n{background:#A23B3B}
+.rev{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rev li{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:10px;background:#FDF8EE;border:1px solid #EBD3A8;font-size:14px;line-height:1.55;color:#33383F}
+.rev .n{background:#8A5A0B}
+</style>
+
+<div style="display: flex; flex-direction: column; background: #F7F6F3">
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 32px; flex-wrap: wrap; background: #FFFFFF; border-bottom: 1px solid #E6E4DF">
+    <div style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="7" fill="none" stroke="#2B3036" stroke-width="2"></rect><path d="M7 14l4 4 8-9" fill="none" stroke="#2B3036" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span style="font-weight: 600; font-size: 15px">PhenoEval</span>
+      </div>
+      <nav aria-label="Main" style="display: flex; gap: 4px; font-size: 14px">
+        <a href="/#/" style="padding: 8px 12px; border-radius: 8px; color: #4A5059; text-decoration: none">My assignments</a>
+        <a href="/guidelines.html" aria-current="page" style="padding: 8px 12px; border-radius: 8px; color: #1F2328; background: #F0EEE9; text-decoration: none; font-weight: 500">Guidelines</a>
+      </nav>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px; font-size: 14px">
+      <span style="width: 32px; height: 32px; border-radius: 50%; background: #EEF1F4; color: #2B3036; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px" id="ini"></span>
+      <span id="who"></span>
+    </div>
+  </header>
+
+  <main style="flex: 1; padding: 44px 20px 72px; display: flex; justify-content: center">
+    <div style="width: 100%; max-width: 1080px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+      <article style="flex: 999 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5F6670">Step 2 of 3</p>
+          <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 34px; line-height: 1.2">How to perform the task</h1>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5059">For each patient described in the article, the mentions of abnormal clinical phenotypes associated with the patient are highlighted in the article text (left panel, Figure 1). Each mention was automatically assigned a term from the Human Phenotype Ontology (HPO), or flagged when no fitting term was found. Click a mention to open its decision card (right panel, Figure 1) and verify that <span class="gni">1</span> the predicted HPO term fits the phenotypic abnormality stated in the text (for a mention without a term, confirm that no fitting HPO term exists, or assign one if you find it). Reject mentions that are not an observed phenotypic abnormality of a patient. <span class="gni">2</span> For a genuine phenotype mention, verify that it is assigned to the correct patient. If not, re-assign it. <span class="gni">3</span> If you find other mentions of abnormal phenotypes that are not highlighted for this patient, add them manually.</p>
+        </div>
+
+        <section aria-label="Figure 1: the article text and the decision card of the selected mention" style="display: flex; flex-direction: column; gap: 12px">
+          <div id="fig1" style="position: relative; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 36px; align-items: start">
+            <div style="background: #FFFFFF; border: 1px solid #E6E4DF; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+              <span class="pg-l" style="color: #3A4049">Article text</span>
+              <p style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.8; color: #24282E">The proband, a 6-year-old girl, was referred for <span class="hs">global developmental delay<span class="mk" style="color: #2E7F84">?</span></span> and <span id="fig-span" class="hs hs-link">short stature<span class="mk" style="color: #2E7F84">?</span></span>. On examination she had <span class="hs">long palpebral fissures<span class="mk" style="color: #2E7F84">?</span></span>. Echocardiography revealed <span class="hs">coarctation of the aorta<span class="mk" style="color: #2E7F84">?</span></span>. At 5 years, formal assessment confirmed <span class="hs">marked developmental delay<span class="mk" style="color: #2E7F84">?</span></span>.</p>
+            </div>
+            <div style="background: #DCE8EC; border: 1px solid #CAD7DD; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+              <span class="pg-l" style="color: #3A4049">Decision card</span>
+              <div class="fcard">
+                <div id="fig-chip" class="fc-head"><span class="fc-q">“short stature”</span><span class="fc-badge">To review</span></div>
+                <div class="fc-body">
+                  <div class="fc-ref">
+                    <span class="fc-k">Predicted term</span>
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><span class="fc-name">Short stature</span><span class="hid">HP:0004322 ↗</span></div>
+                    <span class="fc-k" style="margin-top: 6px">Definition</span>
+                    <span class="fc-def">A height below that which is expected according to age and gender norms, often defined as more than 2 standard deviations below the mean for age and gender.</span>
+                  </div>
+                  <div class="fc-btns">
+                    <span class="fc-dec"><b style="color: #1F5E42"><svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.5l3.2 3.2L14 5.5" fill="none" stroke="#2F7D5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Accept</b><span>The HPO term fits</span></span>
+                    <span class="fc-dec"><b style="color: #74490A"><svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 14.5l1-3.6 7.6-7.6a1.4 1.4 0 012 2l-7.6 7.6z" fill="none" stroke="#8A5A0B" stroke-width="1.7" stroke-linejoin="round"></path></svg>Revise</b><span>Find a fitting HPO term</span></span>
+                    <span class="fc-dec"><b style="color: #862E2E"><svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8" stroke="#A23B3B" stroke-width="2" stroke-linecap="round"></path></svg>Reject</b><span>Not a patient phenotype</span></span>
+                  </div>
+                  <div class="fc-foot"><span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true" style="vertical-align: -2px; margin-right: 4px"><circle cx="6" cy="5" r="2.5" fill="none" stroke="#33383F" stroke-width="1.4"></circle><path d="M1.5 13c.6-2.4 2.3-3.8 4.5-3.8 1 0 1.9.3 2.6.8M10 9.5h5M13 7.5l2 2-2 2" fill="none" stroke="#33383F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Wrong patient?</span><span>← Previous&nbsp;&nbsp;&nbsp;Next →</span></div>
+                </div>
+              </div>
+            </div>
+            <svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible">
+              <path id="lk-path" d="" fill="none" stroke="#2B3036" stroke-width="1.6" stroke-dasharray="5 4" stroke-linecap="round"></path>
+              <circle id="lk-a" cx="-99" cy="-99" r="3.5" fill="#2B3036"></circle>
+              <circle id="lk-b" cx="-99" cy="-99" r="3.5" fill="#2B3036"></circle>
+            </svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; max-width: 900px">
+            <p class="gx" style="font-size: 14px"><b style="font-weight: 600; color: #1F2328">Figure 1.</b> How the task looks when you start. The <b style="font-weight: 600">left panel</b> shows the article text: every phenotype mention attributed to the patient is highlighted in light teal with a dashed underline and a <b style="font-weight: 600">?</b>, meaning it is still to review. Click a mention to open its <b style="font-weight: 600">decision card</b> (right panel): it shows the predicted HPO term with its definition, the three decisions, and the patient check.</p>
+          </div>
+        </section>
+        <div class="gsec">
+          <h2 class="gh"><span class="gn">1</span>How to validate the HPO term of a mention</h2>
+          <p class="gp">For every phenotype mention (a span in the text), <b style="font-weight: 600">Accept</b>, <b style="font-weight: 600">Revise</b> or <b style="font-weight: 600">Reject</b> its HPO term.</p>
+        </div>
+        <section aria-label="The three decisions" style="display: flex; flex-direction: column; gap: 12px; margin-top: -14px">
+          <div class="gcard">
+            <span class="gic" style="background: #E3F2EA"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9.5l3.2 3.2L14 5.5" fill="none" stroke="#2F7D5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <div class="gbody">
+              <h3 class="gt" style="color: #1F5E42">Accept <span>· The HPO term fits</span></h3>
+              <p class="gx">Accept the HPO term if it fits the phenotype mention.</p>
+              <p class="ex"><span class="q">“echocardiography revealed <span style="background: #D7E6C3; border-radius: 3px; padding: 0 2px">coarctation of the aorta<span class="mk" style="color: #5E8A2E">✓</span></span>”</span> → Coarctation of aorta <span class="hid">HP:0001680</span></p>
+            </div>
+          </div>
+
+          <div class="gcard">
+            <span class="gic" style="background: #FBEFDC"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 14.5l1-3.6 7.6-7.6a1.4 1.4 0 012 2l-7.6 7.6z" fill="none" stroke="#8A5A0B" stroke-width="1.7" stroke-linejoin="round"></path></svg></span>
+            <div class="gbody">
+              <h3 class="gt" style="color: #8A5A0B">Revise <span>· Find a fitting HPO term</span></h3>
+              <p class="gx">Revise the predicted HPO term if you think the current term does not accurately capture the stated phenotypic abnormality, and a better fit exists in the HPO. You can revise it in two ways:</p>
+              <ol class="rev">
+                <li><span class="n">1</span><span><b style="font-weight: 600">Select a different term among the candidates</b> provided for this mention. Switch to <i>Lineage</i> to see how they relate in the hierarchy.</span></li>
+                <li><span class="n">2</span><span>If none of the candidates fits, click <b style="font-weight: 600">Search HPO</b> to <b style="font-weight: 600">search the full ontology</b> by name, synonym or ID, and choose the best match. Any term in the lineage tree can be chosen.</span></li>
+              </ol>
+              <p class="gx">Click <b style="font-weight: 600">Confirm</b> to save your revision. If neither gives a term that describes the phenotype without changing its meaning, click <b style="font-weight: 600">No fitting HPO term</b> in the search: the mention is recorded as <b style="font-weight: 600">No code</b> (an ontology gap).</p>
+              <p class="ex"><span class="q">“<span style="background: #FBEFDC; border-radius: 3px; padding: 0 2px">eversion of the lateral third of the lower eyelids</span>”</span> predicted as Abnormal eyelid morphology: correct but too broad → Eversion of lateral third of lower eyelids <span class="hid">HP:0007655</span></p>
+            </div>
+          </div>
+
+          <div class="gcard">
+            <span class="gic" style="background: #F8E4E2"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8" stroke="#A23B3B" stroke-width="1.9" stroke-linecap="round"></path></svg></span>
+            <div class="gbody">
+              <h3 class="gt" style="color: #A23B3B">Reject <span>· Not a patient phenotype</span></h3>
+              <p class="gx">Use Reject <b style="font-weight: 600">only</b> if the highlighted mention does not describe an observed phenotypic abnormality of a patient. This includes the following cases:</p>
+              <ol class="rej">
+                <li><span class="n">1</span><span>The text span <b style="font-weight: 600">does not describe a clinical phenotype</b>.</span></li>
+                <li><span class="n">2</span><span>The text span describes a <b style="font-weight: 600">normal, absent or not confirmed</b> clinical phenotype.</span></li>
+                <li><span class="n">3</span><span>The abnormal phenotype <b style="font-weight: 600">does not belong to a patient from this study</b> (e.g. a general mention of a clinical abnormality).</span></li>
+              </ol>
+              <p class="ex"><span class="q">“<span style="background: #F8E4E2; border-radius: 3px; padding: 0 2px">Her hearing was normal<span class="mk" style="color: #A23B3B">✕</span></span>”</span> predicted as Hearing impairment → Reject (a normal finding)</p>
+            </div>
+          </div>
+
+          <div class="gcard" style="border-style: dashed; border-color: #C3C8CE">
+            <span class="gic" style="background: #EEF1F4"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="5.6" fill="none" stroke="#6B7280" stroke-width="1.7"></circle><path d="M4.5 13.5l9-9" stroke="#6B7280" stroke-width="1.7" stroke-linecap="round"></path></svg></span>
+            <div class="gbody">
+              <h3 class="gt" style="color: #4A515B">Mentions without a predicted HPO term <span>· No code</span></h3>
+              <p class="gx">For some mentions the pipeline found <b style="font-weight: 600">no HPO term</b> that fits. They are highlighted in the text like the other mentions to review, and their card shows <i>No HPO term predicted</i>. Choose one of:</p>
+              <ol class="nc">
+                <li><span class="n">1</span><span><b style="font-weight: 600">Confirm</b> · No fitting HPO term: you agree that no HPO term describes the phenotype. The mention is recorded as No code (an ontology gap).</span></li>
+                <li><span class="n">2</span><span><b style="font-weight: 600">Revise</b> · Find a fitting HPO term: a term does exist. Select it among the candidates or search the HPO, as for any revision.</span></li>
+                <li><span class="n">3</span><span><b style="font-weight: 600">Reject</b> · Not a patient phenotype: the same cases as above.</span></li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <div class="gsec">
+          <h2 class="gh"><span class="gn">2</span>How to validate the patient assignment</h2>
+          <p class="gp">For each phenotype mention with a validated HPO term, verify that the phenotype is assigned to the correct patient.</p>
+        </div>
+        <section aria-label="Check the patient assignment" class="gcard" style="margin-top: -14px">
+          <span class="gic" style="background: #E2F1F2"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6" cy="5" r="2.5" fill="none" stroke="#1D5F66" stroke-width="1.4"></circle><path d="M1.5 13c.6-2.4 2.3-3.8 4.5-3.8 1 0 1.9.3 2.6.8M10 9.5h5M13 7.5l2 2-2 2" fill="none" stroke="#1D5F66" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div class="gbody">
+            <h3 class="gt" style="color: #1D5F66">Wrong patient?</h3>
+            <p class="gx">Click <b style="font-weight: 600">Wrong patient?</b> to reassign the phenotype mention: choose the correct patient from the list. Use <b style="font-weight: 600">Someone else</b> and enter the identifier of the correct patient from the article if it is not in the list.</p>
+          </div>
+        </section>
+
+        <div class="gsec">
+          <h2 class="gh"><span class="gn">3</span>How to add a missing phenotype</h2>
+          <p class="gp">If you identify an abnormal phenotypic feature of this patient that is not highlighted in the text, add it as follows.</p>
+        </div>
+        <section aria-label="Add missing phenotypes" class="gcard" style="margin-top: -14px">
+          <span class="gic" style="background: #EEE8F8"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="#5B3F96" stroke-width="1.7" stroke-linecap="round"></path></svg></span>
+          <div class="gbody">
+            <h3 class="gt" style="color: #5B3F96">Add a missed phenotype</h3>
+            <ol style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.6; color: #4A5059">
+              <li>Click <b style="font-weight: 600">Add a missed phenotype</b> in the right-hand panel, below the phenotype mentions.</li>
+              <li>Select the words of the phenotype in the article text, within one paragraph or one table cell, and click <b style="font-weight: 600">Use selection</b>. The span cannot be typed, so that its exact place in the article is recorded.</li>
+              <li>Search the fitting HPO term by name, synonym or ID, and click <b style="font-weight: 600">Confirm</b>.</li>
+            </ol>
+            <p class="gx">The phenotype will be highlighted for the correct patient. You can <b style="font-weight: 600">Revise</b> or <b style="font-weight: 600">Remove</b> it at any time.</p>
+          </div>
+        </section>
+        <div class="gsec">
+          <h2 class="gh"><span class="gn" style="background: #5B8689"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 3.5h9M2.5 7h9M2.5 10.5h5.5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"></path></svg></span>The phenotypic profile</h2>
+          <p class="gp">You can see the summary of the patient’s phenotypic features you reviewed in the <b style="font-weight: 600">phenotypic profile</b> (right-hand panel): the phenotypes you <b style="font-weight: 600">accepted</b>, <b style="font-weight: 600">revised</b> or <b style="font-weight: 600">added</b>, shown by their HPO term and grouped by organ system, and those you confirmed as <b style="font-weight: 600">No code</b>, shown by the text of the mention in a group of their own. Mentions still to review and rejected mentions are not shown. When a phenotype has several mentions in the text, their number is shown next to it (×2). Click a phenotype to open its mention.</p>
+        </div>
+        <section aria-label="Example of a phenotypic profile" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: -14px">
+          <div class="prof">
+            <span class="pg-l" style="color: #3A4049">Phenotypic profile</span>
+            <div class="pgrp"><span class="pg-l">Growth abnormality</span><div class="pg-chips"><span class="pc c-accept">Short stature</span></div></div>
+            <div class="pgrp"><span class="pg-l">Nervous system</span><div class="pg-chips"><span class="pcw"><span class="pc c-accept">Global developmental delay</span><span class="pcn" title="2 mentions in the text">&#215;2</span></span></div></div>
+            <div class="pgrp"><span class="pg-l">Eye</span><div class="pg-chips"><span class="pc c-accept">Long palpebral fissure</span><span class="pc c-revise">Eversion of lateral third of lower eyelids</span></div></div>
+            <div class="pgrp"><span class="pg-l">Cardiovascular system</span><div class="pg-chips"><span class="pc c-accept">Coarctation of aorta</span></div></div>
+            <div class="pgrp"><span class="pg-l">Limbs</span><div class="pg-chips"><span class="pc c-added">Persistence of fetal fingertip pads</span></div></div>
+            <div class="pgrp"><span class="pg-l">No HPO term (ontology gap)</span><div class="pg-chips"><span class="pc c-ghost">peculiar shuffling gait</span></div></div>
+            <div class="pkey" style="gap: 5px"><span class="pc c-accept">Accepted</span><span class="pc c-revise">Revised</span><span class="pc c-added">Added</span><span class="pc c-ghost">No code</span></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <p class="gx" style="font-size: 14px"><b style="font-weight: 600; color: #1F2328">Figure 2.</b> An example of a phenotypic profile after review. The style of each phenotype shows your decision on its mention:</p>
+            <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.55; color: #4A5059">
+              <li><span class="pc c-accept" style="font-size: 12px; padding: 1px 8px">Accepted</span> the predicted HPO term fits;</li>
+              <li><span class="pc c-revise" style="font-size: 12px; padding: 1px 8px">Revised</span> you assigned a better-fitting HPO term;</li>
+              <li><span class="pc c-added" style="font-size: 12px; padding: 1px 8px">Added</span> you added a phenotype that was not highlighted;</li>
+              <li><span class="pc c-ghost" style="font-size: 12px; padding: 1px 8px">No code</span> you confirmed that no HPO term fits the phenotype.</li>
+            </ul>
+          </div>
+        </section>
+      </article>
+
+      <aside style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <section style="background: #FFFFFF; border: 1px solid #E6E4DF; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 600">Good to know</h2>
+          <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.55; color: #4A5059">
+            <li>Use <b style="font-weight: 600">Revise</b>, not Reject, if the predicted HPO term doesn’t fit the phenotype mention.</li>
+            <li>When revising an HPO term, prefer the <b style="font-weight: 600">most specific</b> term the text supports. Code the mention.</li>
+            <li>Every click is saved. You can leave and come back at any time.</li>
+          </ul>
+        </section>
+        <section style="background: #FFFFFF; border: 1px solid #E6E4DF; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-size: 15px; font-weight: 600">Reading the highlights</h2>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; color: #24282E">
+            <li><span style="background: #D6ECEC; border-bottom: 2px dashed #2E7F84; border-radius: 3px; padding: 0 3px">to review<span class="mk" style="color: #2E7F84">?</span></span></li>
+            <li><span style="background: #D7E6C3; border-radius: 3px; padding: 0 3px">accepted<span class="mk" style="color: #5E8A2E">✓</span></span></li>
+            <li><span style="background: #FBEFDC; border-radius: 3px; padding: 0 3px">revised<svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true" style="margin-left: 4px; vertical-align: -1px"><path d="M1.5 9C3.5 5.5 6 4 9 4s5.5 1.5 7.5 5c-2 3.5-4.5 5-7.5 5S3.5 12.5 1.5 9z" fill="none" stroke="#B07A1E" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="9" cy="9" r="2.5" fill="#B07A1E"></circle></svg></span></li>
+            <li><span style="background: #F8E4E2; border-radius: 3px; padding: 0 3px">rejected<span class="mk" style="color: #A23B3B">✕</span></span></li>
+            <li><span style="background: #EEE8F8; border-radius: 3px; padding: 0 3px">added<span class="mk" style="color: #7B61B5; font-size: .85em">+</span></span></li>
+            <li><span style="border-bottom: 2px dashed #8A9199; padding: 0 3px">no code<span class="mk" style="color: #8A9098; font-weight: 600">∅</span></span></li>
+          </ul>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #4A5059">Hover a category in the legend above the article for a short description; its counter shows how many mentions it holds. Click it to hide or show those highlights. <b style="font-weight: 600">This patient / All patients</b> chooses whose mentions are highlighted.</p>
+        </section>
+        <a class="btn-primary" href="/#/" style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 46px; border-radius: 10px; background: #2B3036; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px">Go to my assignments
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        <p style="margin: 0; font-size: 13px; color: #5F6670; line-height: 1.5; text-align: center">You can reopen these guidelines from the top bar at any time.</p>
+      </aside>
+    </div>
+  </main>
+</div>
+
+
+<script>
+// Figure 1: dashed line from the selected mention in the text to its decision card.
+function measure() {
+  var fig = document.getElementById('fig1'), a = document.getElementById('fig-span'), b = document.getElementById('fig-chip');
+  if (!fig || !a || !b) return;
+  var f = fig.getBoundingClientRect(), ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+  var x1 = ra.right - f.left + 3, y1 = ra.top + ra.height / 2 - f.top, x2 = rb.left - f.left - 3, y2 = rb.top + rb.height / 2 - f.top;
+  var dx = Math.max(40, (x2 - x1) * 0.5);
+  document.getElementById('lk-path').setAttribute('d', 'M' + x1 + ' ' + y1 + ' C' + (x1 + dx) + ' ' + y1 + ' ' + (x2 - dx) + ' ' + y2 + ' ' + x2 + ' ' + y2);
+  var A = document.getElementById('lk-a'), B = document.getElementById('lk-b');
+  A.setAttribute('cx', x1); A.setAttribute('cy', y1); B.setAttribute('cx', x2); B.setAttribute('cy', y2);
+}
+window.addEventListener('load', measure); window.addEventListener('resize', measure);
+try { document.fonts.ready.then(measure); } catch (e) {}
+fetch('/api/me', { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (me) {
+  if (!me) return;
+  document.getElementById('who').textContent = me.name;
+  document.getElementById('ini').textContent = me.name.split(/\s+/).filter(function (w) { return /^[A-Za-z]/.test(w) && !/^dr\.?$/i.test(w); }).map(function (w) { return w[0].toUpperCase(); }).slice(0, 2).join('');
+});
+</script>
+</body>
+</html>
